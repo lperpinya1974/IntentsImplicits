@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">IntentsImplicits</string>
+
+    <string-array name="intents">
+        <item>Localitzacio</item>
+        <item>Telefon</item>
+        <item>Web</item>
+        <item>Email</item>
+    </string-array>
+</resources>
