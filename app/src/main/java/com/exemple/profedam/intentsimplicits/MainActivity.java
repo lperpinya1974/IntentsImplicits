@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
            -- id es el id del item, NO ES EL MISMO QUE view.getId(), en un ListView position i id suelen coincidir
           */
 
+        /* TODO canviar el següent codi per la funcionalitat
+        real de la aplicació */
+
         Toast.makeText(this, "Has clickado en " + position, Toast.LENGTH_SHORT).show();
         view.setBackgroundColor(Color.BLUE);
         Toast.makeText(this, "El id del item es" + id , Toast.LENGTH_SHORT).show();
