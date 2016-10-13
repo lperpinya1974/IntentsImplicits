@@ -15,7 +15,9 @@ public class LocalitzacioActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_localitzacio);
-        ((Button) findViewById(R.id.btnLocalizar)).setOnClickListener(this);
+
+        Button btnLocalizar = (Button) findViewById (R.id.btnLocalizar);
+        btnLocalizar.setOnClickListener(this);
     }
 
     public void onClick(View v) {
