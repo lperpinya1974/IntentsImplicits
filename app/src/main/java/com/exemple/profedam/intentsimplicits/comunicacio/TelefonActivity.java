@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,23 +29,29 @@ public class TelefonActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         if (v.getId() == R.id.btnTrucar) {
 
-            /* A partir de la versió Android 6.0 hem de sol.licitar
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                llamar();
+
+            } else {
+                   /* A partir de la versió Android 6.0 hem de sol.licitar
             els permisos en temps d'execució */
 
-            if (ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
+                if (ActivityCompat.checkSelfPermission(this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 
                 /* Si no tenim otorgat el permís CALL_PHONE */
 
-                     ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.CALL_PHONE},
-                        PETICION_PERMISO_LLAMADA);
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.CALL_PHONE},
+                            PETICION_PERMISO_LLAMADA);
+                } else {
+                    llamar();
+                }
             }
-            else
-            {
-                llamar();
-            }
+
+
         }
+    }
 
     public void llamar() {
 
