@@ -1,5 +1,6 @@
 package com.exemple.profedam.intentsimplicits;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,13 +10,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.exemple.profedam.intentsimplicits.comunicacio.MailActivity;
+import com.exemple.profedam.intentsimplicits.comunicacio.TelefonActivity;
+import com.exemple.profedam.intentsimplicits.localitzacio.LocalitzacioActivity;
+import com.exemple.profedam.intentsimplicits.navegacio.WebActivity;
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ListView listView = (ListView) findViewById (R.id.listView);
         ArrayAdapter<String> adaptador = new ArrayAdapter(this,  android.R.layout.simple_list_item_1);
 
@@ -40,13 +45,45 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
           */
 
         /* TODO canviar el següent codi per la funcionalitat
-        real de la aplicació */
+        real de la aplicació
 
         Toast.makeText(this, "Has clickado en " + position, Toast.LENGTH_SHORT).show();
         view.setBackgroundColor(Color.BLUE);
-        Toast.makeText(this, "El id del item es" + id , Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "El id del item es" + id, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, "El id del listView es" + parent.getId(), Toast.LENGTH_SHORT).show();
+         */
 
 
+
+
+
+
+
+
+
+
+        Intent intent = null;
+        switch (position) {
+            case 0:
+                intent = new Intent(MainActivity.this, LocalitzacioActivity.class);
+                break;
+            case 1:
+                intent = new Intent(MainActivity.this, TelefonActivity.class);
+                break;
+            case 2:
+                intent = new Intent(MainActivity.this, WebActivity.class);
+
+                break;
+            case 3:
+                intent = new Intent(MainActivity.this, MailActivity.class);
+
+                break;
+
+        }
+        if (intent != null) {
+            startActivity(intent);
+        }
     }
-}
+    }
+
+

@@ -22,7 +22,11 @@ public class LocalitzacioActivity extends AppCompatActivity implements View.OnCl
 
     public void onClick(View v) {
         if (v.getId() == R.id.btnLocalizar) {
-            startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q=" + ((EditText) findViewById(R.id.etLocalitzar)).getText().toString())));
+
+            EditText etLocalizar = (EditText) findViewById(R.id.etLocalitzar);
+            String ciudad = etLocalizar.getText().toString();
+            Intent intent = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q=" + ciudad));
+            startActivity(intent);
         }
     }
 }
