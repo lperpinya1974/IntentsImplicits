@@ -25,13 +25,14 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        EditText editText = (EditText) findViewById (R.id.etCerca);
+
         Intent intent = null;
 
         if (v.getId() == R.id.btnNavegar) {
+            EditText etAdreca = (EditText) findViewById (R.id.etAdreca);
             CheckBox checkbox = (CheckBox) findViewById (R.id.encriptat);
             String protocol =  (checkbox.isChecked()) ? "https://":"http://";
-            String uriCompleta = protocol+editText.getText().toString();
+            String uriCompleta = protocol+etAdreca.getText().toString();
             intent = new Intent("android.intent.action.VIEW", Uri.parse(uriCompleta));
             /* Això es el mateix que
             intent = new Intent();
@@ -41,8 +42,10 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
         }
 
         if (v.getId() == R.id.btnCercar) {
+            EditText etCerca = (EditText) findViewById (R.id.etCerca);
             intent = new Intent("android.intent.action.WEB_SEARCH");
-            intent.putExtra("query", editText.getText().toString());
+            /* TODO hay que verificar que el editText no es null o empty */
+            intent.putExtra("query", etCerca.getText().toString());
         }
         if (intent != null) {
             startActivity(intent);
