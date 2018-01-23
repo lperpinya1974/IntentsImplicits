@@ -29,7 +29,7 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
         Intent intent = null;
 
         if (v.getId() == R.id.btnNavegar) {
-            EditText etAdreca = (EditText) findViewById (R.id.etAdreca);
+            EditText etAdreca = (EditText) findViewById (R.id.eturl);
             CheckBox checkbox = (CheckBox) findViewById (R.id.encriptat);
             String protocol =  (checkbox.isChecked()) ? "https://":"http://";
             String uriCompleta = protocol+etAdreca.getText().toString();
