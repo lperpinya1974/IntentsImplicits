@@ -26,6 +26,7 @@ public class LocalitzacioActivity extends AppCompatActivity implements View.OnCl
             EditText etLocalizar = (EditText) findViewById(R.id.etLocalitzar);
             String ciudad = etLocalizar.getText().toString();
             Intent intent = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q=" + ciudad));
+
             startActivity(intent);
         }
     }

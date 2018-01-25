@@ -24,6 +24,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ListView listView = (ListView) findViewById (R.id.listView);
         ArrayAdapter<String> adaptador = new ArrayAdapter(this,  android.R.layout.simple_list_item_1);
 
+        /* Llista de layouts xml possibles:
+        https://github.com/aosp-mirror/platform_frameworks_base/tree/master/core/res/res/layout
+        Documentació android.R.layout:
+
+accepted
+Zakaria, that is a reference to an built-in XML layout document that is part of the Android OS, rather than one of your own XML layouts.
+
+Here is a further list of layouts that you can use: http://developer.android.com/reference/android/R.layout.html
+         */
+
        /* Por motivos didáctivos creo el adaptador paso a paso,
        lo habitual sería cargarlo a traves del metodo createFromResource
         */
