@@ -16,6 +16,7 @@ import android.widget.EditText;
 import com.exemple.profedam.intentsimplicits.R;
 
 
+
 public class TelefonActivity extends AppCompatActivity implements View.OnClickListener {
     public final int PETICION_PERMISO_LLAMADA = 1000;
 
