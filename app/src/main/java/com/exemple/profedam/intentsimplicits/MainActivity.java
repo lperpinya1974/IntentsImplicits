@@ -1,7 +1,12 @@
 package com.exemple.profedam.intentsimplicits;
 
+import android.Manifest;
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +22,8 @@ import com.exemple.profedam.intentsimplicits.navegacio.WebActivity;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
+
+   private final int MY_PERMISSIONS_REQUEST_CAMARA = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,14 +67,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
          */
 
 
-
-
-
-
-
-
-
-
         Intent intent = null;
         switch (position) {
             case 0:
@@ -85,11 +84,61 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 break;
 
+            case 4:
+                requestPermissionAndOpenCamera();
+                break;
+
+            case 5:
+                intent = new Intent("VoyaMorir");
+                break;
+
+
+
         }
         if (intent != null) {
             startActivity(intent);
         }
     }
+
+    private void openCamera() {
+
+        Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(i,0);
     }
+
+    private void requestPermissionAndOpenCamera()
+    {
+        if (Build.VERSION.SDK_INT>Build.VERSION_CODES.LOLLIPOP_MR1) {// Marshmallow+
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED) {
+                // Should we show an explanation?
+
+                    // No se necesita dar una explicación al usuario, sólo pedimos el permiso.
+                    ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMARA );
+                    // MY_PERMISSIONS_REQUEST_CAMARA es una constante definida en la app. El método callback obtiene el resultado de la petición.
+
+            }else{ //have permissions
+                openCamera();
+            }
+        }else{ // Pre-Marshmallow
+            openCamera();;
+        }
+    }
+     @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CAMARA : {
+                // Si la petición es cancelada, el array resultante estará vacío.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // El permiso ha sido concedido.
+                    openCamera();
+                } else {
+                    // Permiso denegado, deshabilita la funcionalidad que depende de este permiso.
+                }
+                return;
+            }
+            // otros bloques de 'case' para controlar otros permisos de la aplicación
+        }
+    }
+}
 
 

@@ -6,5 +6,8 @@
         <item>Telefon</item>
         <item>Web</item>
         <item>Email</item>
+        <item>Cámara</item>
+        <item>Vas a Morir </item>
+
     </string-array>
 </resources>

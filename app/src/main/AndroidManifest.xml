@@ -5,6 +5,7 @@
 
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
 
     <application
@@ -19,10 +20,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name = "PEPITO" />
-                <category android:name = "android.intent.category.DEFAULT" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".localitzacio.LocalitzacioActivity" />
         <activity android:name=".navegacio.WebActivity" />
